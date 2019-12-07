@@ -27,7 +27,6 @@ function renderEverything() {
   renderGreenPeppers()
   renderWhiteSauce()
   renderGlutenFreeCrust()
-
   renderButtons()
   renderPrice()
 }
@@ -45,14 +44,38 @@ function renderPepperonni() {
 
 function renderMushrooms() {
   // Iteration 1: set the visibility of `<section class="mushroom">`
+  document.querySelectorAll('.mushroom').forEach(function($mus) {
+    if(state.mushrooms) {
+      $mus.style.visibility = "visible";
+    }
+    else {
+      $mus.style.visibility = "hidden";
+    }
+  })
 }
 
 function renderGreenPeppers() {
   // Iteration 1: set the visibility of `<section class="green-pepper">`
+  document.querySelectorAll('.green-pepper').forEach(function($gree) {
+    if(state.greenPeppers) {
+      $gree.style.visibility = "visible";
+    }
+    else {
+      $gree.style.visibility = "hidden";
+    }
+  })
 }
 
 function renderWhiteSauce() {
   // Iteration 2: add/remove the class "sauce-white" of `<section class="sauce">`
+  document.querySelectorAll('.sauce').forEach(function($sauce) {
+    if(state.whiteSauce) {
+      $sauce.style.removeAttr('.sauce-white');
+    }
+    else {
+      $sauce.style.addAttr('.sauce-white');
+    }
+  })
 }
 
 function renderGlutenFreeCrust() {
@@ -77,9 +100,19 @@ document.querySelector('.btn.btn-pepperonni').onclick = function() {
 }
 
 // Iteration 1: Add click event listener on `<button class="btn btn-mushrooms">`
+  document.querySelector('.btn.btn-mushrooms').onclick = function() {
+    state.mushrooms = !state.mushrooms;
+    renderEverything()
+  }
 
 // Iteration 1: Add click event listener on `<button class="btn btn-green-peppers">`
-
+document.querySelector('.btn.btn-green-peppers').onclick = function() {
+  state.greenPeppers = !state.greenPeppers;
+  renderEverything()
+}
 // Iteration 2: Add click event listener on `<button class="btn btn-sauce">`
-
+document.querySelectorAll('btn.btn-sauce').onclick = function() {
+  state.whiteSauce = !state.whiteSauce;
+  renderEverything()
+}
 // Iteration 2: Add click event listener on `<button class="btn btn-crust">`
