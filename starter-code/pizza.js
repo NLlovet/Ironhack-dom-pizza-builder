@@ -1,4 +1,10 @@
 // Write your Pizza Builder JavaScript in this file.
+let btn = document.getElementsByClassName('btn');
+
+/* btn.onclick(function() {
+  $(this.toggleClass('active'));
+})
+*/
 
 // Constants 
 var basePrice = 10
@@ -94,20 +100,96 @@ function renderGlutenFreeCrust() {
 
 function renderButtons() {
   // Iteration 3: add/remove the class "active" of each `<button class="btn">`
-  console.log(state)
-  
-  if(state.pepperonni) {
-  let pep = document.getElementsByClassName('btn-pepperonni');
-  console.log(pep)
-  console.log('working but not changing');
-  pep.classList.add('active');
-  console.log('changed')
-}
+  btn.onclick = function() {
+    btn.toggle('active');
+    console.log('No longer active');
+  }
 
 }
 
 function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
+
+/*   <aside class="panel price">
+  <h2>Your pizza's price</h2>
+
+  <b>$10 cheese pizza</b>
+  <ul>
+    <li>$1 pepperonni</li>
+    <li>$1 mushrooms</li>
+    <li>$1 green peppers</li>
+    <li>$3 white sauce</li>
+    <li>$5 gluten-free crust</li>
+  </ul>
+  <strong>$21</strong>
+</aside> */
+  let price = 10;
+  //pepperoni
+  if(!state.pepperonni) {
+    console.log(`0 is working`)
+    let element = document.getElementsByClassName('price')[0];
+    element.querySelectorAll("li")[0].innerHTML = "$0";
+    price -= 1;
+  }
+  else{
+    console.log(`0 is working`)
+    let element = document.getElementsByClassName('price')[0];
+    element.querySelectorAll("li")[0].innerHTML = "$1 pepperonni";
+    price += 1;
+  }
+  //mushrooms
+  if(!state.mushrooms) {
+    console.log(`1 is working`)
+    let element = document.getElementsByClassName('price')[0];
+    element.querySelectorAll("li")[1].innerHTML = "$0";
+    price -= 1;
+  }
+  else {
+    console.log(`1 is working`)
+    let element = document.getElementsByClassName('price')[0];
+    element.querySelectorAll("li")[1].innerHTML = "$1 mushrooms";
+    price += 1;
+  }
+  //green peppers
+  if(!state.greenPeppers) {
+    console.log(`3 is working`)
+    let element = document.getElementsByClassName('price')[0];
+    element.querySelectorAll("li")[2].innerHTML = "$0";
+    price -= 1;
+  }
+  else {
+    console.log(`3 is working`)
+    let element = document.getElementsByClassName('price')[0];
+    element.querySelectorAll("li")[2].innerHTML = "$1 green peppers";
+    price += 1;
+  }
+  //white sauce
+  if(!state.whiteSauce) {
+    console.log(`4 is working`)
+    let element = document.getElementsByClassName('price')[0];
+    element.querySelectorAll("li")[3].innerHTML = "$0";
+    price -= 3;
+  }
+  else{
+    let element = document.getElementsByClassName('price')[0];
+    element.querySelectorAll("li")[3].innerHTML = "$3 white sauce";
+    price += 3; 
+  }
+
+  //gluten free
+  if(!state.glutenFreeCrust) {
+    let element = document.getElementsByClassName('price')[0];
+    element.querySelectorAll("li")[4].innerHTML = "$0";
+    price -= 5; 
+  }
+  else{
+    let element = document.getElementsByClassName('price')[0];
+    element.querySelectorAll("li")[4].innerHTML = "$5 Gluten Free Crust";
+    price += 5; 
+  }
+
+  let final = document.getElementById('total');
+  final.innerHTML = `$<span>${price}</span>`;
 }
 
 
